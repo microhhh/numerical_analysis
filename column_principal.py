@@ -29,6 +29,7 @@ class GaussElimination:
 
     def swap(self, i, j):  # change line
         self.a[[i, j], :] = self.a[[j, i], :]
+        self.b[[i, j], :] = self.b[[j, i], :]
 
     def solve(self):
         n = self.n
@@ -51,7 +52,7 @@ class GaussElimination:
                 print(self.b)
             for p in range(j + 1, n):
                 l = a[p][j] / a[j][j]
-                # print('l = %f' % (l))
+
                 b[p] -= l * b[j]
                 for q in range(j, n):
                     a[p][q] -= l * a[j][q]
