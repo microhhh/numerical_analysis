@@ -1,7 +1,6 @@
 # -*- coding: UTF-8 -*-
 import numpy as np
 
-
 class GaussElimination:
 
     def __init__(self, a, b):
@@ -17,8 +16,12 @@ class GaussElimination:
         print(self.b)
         print("det A=")
         print(np.linalg.det(a))
-        print("cond A=")
+        print("cond 1 A=")
+        print(np.linalg.cond(a, p=1))
+        print("cond 2 A=")
         print(np.linalg.cond(a, p=2))
+        print("cond inf A=")
+        print(np.linalg.cond(a, p=np.inf))
         # print(np.linalg.solve(a, b))
 
     def max(self, max_i, max_v, i, j):
@@ -73,6 +76,7 @@ class GaussElimination:
         return self.x
 
     def line_balance(self):
+        # line balance method
         D = np.zeros([self.n, self.n], dtype=np.float64)
         line_max = a.max(axis=1)
         for i in range(0, self.n):
@@ -82,21 +86,19 @@ class GaussElimination:
         self.a = np.dot(D, a)
         self.b = np.dot(D, b)
 
-
 if __name__ == '__main__':
-    debug = False
 
     # problem1
-    # a = np.array([[3.01, 6.03, 1.99],
-    #               [1.27, 4.16, -1.23],
-    #               [0.987, -4.81, 9.34]])
-    # b = np.array([1, 1, 1], dtype=np.float64)
+    a = np.array([[3.01, 6.03, 1.99],
+                  [1.27, 4.16, -1.23],
+                  [0.987, -4.81, 9.34]])
+    b = np.array([1, 1, 1], dtype=np.float64)
 
     # problem2
-    a = np.array([[3.00, 6.03, 1.99],
-                  [1.27, 4.16, -1.23],
-                  [0.990, -4.81, 9.34]])
-    b = np.array([1, 1, 1], dtype=np.float64)
+    # a = np.array([[3.00, 6.03, 1.99],
+    #               [1.27, 4.16, -1.23],
+    #               [0.990, -4.81, 9.34]])
+    # b = np.array([1, 1, 1], dtype=np.float64)
 
     equation = GaussElimination(a, b)
     equation.info()
