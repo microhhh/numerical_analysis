@@ -63,8 +63,8 @@ if __name__ == '__main__':
         a[i + 2, i] = 1
 
     equation = Iteration(a, b)
-    # equation.info()
-    # equation.jacobi(x, eps)
+    equation.info()
+    equation.jacobi(x, eps)
     for w in [1.0, 1.2, 1.4, 1.6, 1.8]:
         equation.sor(x, w, eps)
     # equation.info()
