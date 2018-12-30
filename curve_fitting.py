@@ -2,6 +2,23 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
+def polyfit(x, y, degree):
+    n = degree + 1
+    A = np.zeros((n, n), dtype=np.float64)
+    b = np.zeros((n, 1), dtype=np.float64)
+    for i in range(n):
+        for j in range(n):
+            A[i, j] = np.sum(np.power(x, i) * np.power(x, j))
+
+    for i in range(n):
+        b[i] = np.sum(np.power(x, i) * y)
+    a = np.linalg.solve(A, b)
+    print(A)
+    print(b)
+    return a
+
+
 if __name__ == '__main__':
     x = np.array([0.0, 0.1, 0.2, 0.3, 0.5, 0.8, 1.0], dtype=np.float64)
     y = np.array([1.0, 0.41, 0.50, 0.61, 0.91, 2.02, 2.46], dtype=np.float64)
@@ -9,6 +26,9 @@ if __name__ == '__main__':
     f4 = np.polyfit(x, y, 4)
     p3 = np.poly1d(f3)
     p4 = np.poly1d(f4)
+
+    # z = polyfit(x, y, 3)
+
     print(p3)
     print(p4)
 
