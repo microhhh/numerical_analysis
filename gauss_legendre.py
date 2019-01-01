@@ -1,6 +1,5 @@
 # -*- coding: UTF-8 -*-
-import numpy as np
-from math import sin, pow
+from math import sin
 
 
 class GuassLegendre:
